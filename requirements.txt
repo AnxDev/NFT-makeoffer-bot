@@ -1,0 +1,4 @@
+colorama==0.4.4
+selenium==3.141.0
+selenium_wire==4.6.4
+py==1.10.0

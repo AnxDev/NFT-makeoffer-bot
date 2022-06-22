@@ -1,3 +1,4 @@
+# IMPORTS
 from concurrent.futures import thread
 from multiprocessing.connection import wait
 from py import process
@@ -10,18 +11,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys as key
 import sys
 from colorama import Fore, Style, init, Back
-# import chrome settings from selenium.webdriver.chrome.options
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 from threading import Thread
-def wait_for_element(driver, by, value, timeout=10):
+# FUNCTIONS
+
+def wait_for_element(driver, by, value, timeout=10): # this functions allows to wait for an element to be present in the webpage
        WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable(
                 (by, value)
             )
         )
 
-def open_metamask(driver, numberofwindows,index= 0):
+def open_metamask(driver, numberofwindows,index= 0): # this function opens metamask
     global hasToContinue
     wait_for_element(driver, By.CLASS_NAME, "elements__StyledListItem-sc-197zmwo-0")
     metamasklist = driver.find_elements_by_class_name("elements__StyledListItem-sc-197zmwo-0")[index]
@@ -41,7 +43,7 @@ def open_metamask(driver, numberofwindows,index= 0):
 
 
 
-def makeoffer(driver):
+def makeoffer(driver): # this function makes the offer
     global offer_value, expiration_date, hasToContinue
     time.sleep(1)
     wait_for_element(driver, By.CLASS_NAME, "dpXlkZ")
@@ -81,7 +83,7 @@ def makeoffer(driver):
     wait_for_element(driver, By.CLASS_NAME, "btn-primary")
     driver.find_element_by_class_name("btn-primary").click()
 
-def doCollection(site):
+def doCollection(site): # this function switches nft
     global Options
     options = Options()
     options.add_extension("MetaMask.crx")
@@ -120,8 +122,8 @@ def doCollection(site):
                 continue
 
     
-init()
-def main():
+init() # colorama
+def main(): # this is the main function
     
     global password, secret_phrase, offer_value, expiration_date, hasToContinue
     print(Back.WHITE + Fore.BLACK)
@@ -158,10 +160,14 @@ def main():
     thread2 = Thread(target=doCollection, args=(sites[1],))
     thread1.start()
     thread2.start()
+##################################################################
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
         print("\n\nArresto...")
         sys.exit()
-        
+#END
+# MADE BY ANXDEV
+# SHARE ME
+# <3
